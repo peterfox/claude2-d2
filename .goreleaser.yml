@@ -1,0 +1,52 @@
+version: 2
+
+builds:
+  - binary: r2
+    goos:
+      - darwin
+    goarch:
+      - arm64
+      - amd64
+    env:
+      - CGO_ENABLED=1
+
+universal_binaries:
+  - replace: true
+
+archives:
+  - formats:
+      - tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+brews:
+  - name: claude2-d2
+    homepage: https://github.com/peterfox/claude2-d2
+    description: Connects Claude Code lifecycle events to a Sphero R2-D2 droid
+    license: MIT
+    directory: Formula
+    repository:
+      owner: peterfox
+      name: claude2-d2
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    caveats: |
+      To get started, power on your R2-D2 and run:
+        r2 setup
+
+      This scans for your droid over Bluetooth and saves its address to ~/.r2d2.
+      Only needed once.
+
+      Then start the daemon:
+        brew services start claude2-d2
+
+      Finally, install the Claude Code plugin so hooks are wired up automatically:
+        Open Claude Code and run: /plugin install peterfox/claude2-d2 https://github.com/peterfox/claude2-d2
+
+      R2-D2 will react to Claude Code lifecycle events in any session.
+    service: |
+      run [opt_bin/"r2", "daemon"]
+      keep_alive true
+      log_path "/tmp/r2d2.log"
+      error_log_path "/tmp/r2d2.log"
+    test: |
+      assert_match "r2", shell_output("#{bin}/r2 --help 2>&1")
