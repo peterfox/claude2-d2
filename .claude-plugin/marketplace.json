@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "name": "claude2-d2",
+      "description": "Connects Claude Code lifecycle events to a Sphero R2-D2 droid via the r2 daemon on :2187",
+      "version": "1.0.0",
+      "hooks": "hooks/hooks.json"
+    }
+  ]
+}
