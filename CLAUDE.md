@@ -73,7 +73,8 @@ Sources: [Plugin structure](https://code.claude.com/docs/en/plugins), [Hooks for
 
 ```
 .claude-plugin/
-    plugin.json       # manifest — ONLY this file lives inside .claude-plugin/
+    plugin.json       # manifest — ONLY these files live inside .claude-plugin/
+    marketplace.json  # marketplace catalog listing plugins and their sources
 hooks/
     hooks.json        # hook event handlers — at plugin ROOT, never inside .claude-plugin/
 ```
@@ -118,11 +119,33 @@ The format is identical to the `hooks` object in `settings.json` — a top-level
 
 Six hooks are registered: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `Stop`, `StopFailure`, `PermissionRequest`. All use `|| true` so a stopped daemon is silently ignored.
 
+### `.claude-plugin/marketplace.json`
+
+Lists the plugin and where to fetch it from. The `source` field **must** be a GitHub source object — a plain string `"."` or `"./"` is not valid.
+
+```json
+{
+  "name": "peterfox-claude2-d2",
+  "owner": { "name": "Peter Fox" },
+  "plugins": [
+    {
+      "name": "claude2-d2",
+      "source": {
+        "source": "github",
+        "repo": "peterfox/claude2-d2"
+      },
+      "description": "..."
+    }
+  ]
+}
+```
+
 ### Installing
 
 ```
-/plugin marketplace add peterfox/claude2-d2
-/reload-plugins
+/plugin marketplace add peterfox/claude2-d2   # registers the marketplace
+/plugin                                        # installs claude2-d2 from it
+/reload-plugins                                # activates the hooks
 ```
 
 ## Architecture

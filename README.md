@@ -81,7 +81,9 @@ claude2-d2 daemon --debug
 
 Open Claude Code and run:
 ```
-/plugin install peterfox/claude2-d2 https://github.com/peterfox/claude2-d2
+/plugin marketplace add peterfox/claude2-d2
+/plugin
+/reload-plugins
 ```
 
 This wires up all lifecycle hooks automatically. Toggle the plugin on/off anytime via `/plugin`.
