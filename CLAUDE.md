@@ -70,7 +70,9 @@ curl -s -X POST http://localhost:2187/event -d permission_request
 Hooks are packaged as a Claude Code plugin in `hooks/hooks.json` and `.claude-plugin/plugin.json`. Install with:
 
 ```
-/plugin install peterfox/claude2-d2 https://github.com/peterfox/claude2-d2
+/plugin marketplace add peterfox/claude2-d2
+/plugin
+/reload-plugins
 ```
 
 Six hooks are registered: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `Stop`, `StopFailure`, `PermissionRequest`. All use `|| true` so a stopped daemon is silently ignored.
