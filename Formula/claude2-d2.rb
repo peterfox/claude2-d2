@@ -5,12 +5,12 @@
 class Claude2D2 < Formula
   desc "Connects Claude Code lifecycle events to a Sphero R2-D2 droid"
   homepage "https://github.com/peterfox/claude2-d2"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
   depends_on :macos
 
-  url "https://github.com/peterfox/claude2-d2/releases/download/v0.1.0/claude2-d2_0.1.0_darwin_all.tar.gz"
-  sha256 "85f94b93c5846aeacf4d877e8f44ecc9c949f7826117c41beb0bb4f8a3f609ff"
+  url "https://github.com/peterfox/claude2-d2/releases/download/v0.2.0/claude2-d2_0.2.0_darwin_all.tar.gz"
+  sha256 "42c6460cee682a8664485f23a8d30d0d694a02bcc5b87c430c1e70db2fc18764"
 
   define_method(:install) do
     bin.install "claude2-d2"
