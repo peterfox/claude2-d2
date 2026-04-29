@@ -14,6 +14,7 @@ class Claude2D2 < Formula
 
   define_method(:install) do
     bin.install "claude2-d2"
+    system "codesign", "--sign", "-", "--force", "--identifier", "com.peterfox.claude2-d2", bin/"claude2-d2"
   end
 
   def caveats
@@ -24,8 +25,11 @@ class Claude2D2 < Formula
       This scans for your droid over Bluetooth and saves its address to ~/.claude2-d2.
       Only needed once.
 
-      Then start the daemon:
+      Then grant Bluetooth permission and start the daemon:
         brew services start claude2-d2
+
+      If macOS shows a Bluetooth permission loop, grant it manually:
+        System Settings → Privacy & Security → Bluetooth → add the binary
 
       Finally, install the Claude Code plugin so hooks are wired up automatically:
         Open Claude Code and run: /plugin install peterfox/claude2-d2 https://github.com/peterfox/claude2-d2

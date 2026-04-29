@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/peterfox/claude2-d2/internal/launchd"
 	"github.com/peterfox/claude2-d2/internal/r2"
@@ -21,6 +22,10 @@ var installCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("could not resolve binary path: %w", err)
 		}
+		binaryPath, err = filepath.EvalSymlinks(binaryPath)
+		if err != nil {
+			return fmt.Errorf("could not resolve binary symlink: %w", err)
+		}
 
 		if err := launchd.WritePlist(binaryPath); err != nil {
 			return fmt.Errorf("failed to write plist: %w", err)
@@ -33,6 +38,10 @@ var installCmd = &cobra.Command{
 		fmt.Println("Daemon installed and started.")
 		fmt.Println("Logs: /tmp/claude2-d2.log")
 		fmt.Printf("Status: launchctl list | grep %s\n", launchd.Label)
+		fmt.Println()
+		fmt.Println("NOTE: If a Bluetooth permission dialog loops without resolving, run")
+		fmt.Println("  claude2-d2 daemon")
+		fmt.Println("from your terminal, accept the Bluetooth prompt, then Ctrl-C and re-run install.")
 		return nil
 	},
 }
