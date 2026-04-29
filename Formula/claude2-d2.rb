@@ -5,16 +5,15 @@
 class Claude2D2 < Formula
   desc "Connects Claude Code lifecycle events to a Sphero R2-D2 droid"
   homepage "https://github.com/peterfox/claude2-d2"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
   depends_on :macos
 
-  url "https://github.com/peterfox/claude2-d2/releases/download/v0.2.0/claude2-d2_0.2.0_darwin_all.tar.gz"
-  sha256 "42c6460cee682a8664485f23a8d30d0d694a02bcc5b87c430c1e70db2fc18764"
+  url "https://github.com/peterfox/claude2-d2/releases/download/v0.3.0/claude2-d2_0.3.0_darwin_all.tar.gz"
+  sha256 "a54e5a2471b139836359c00d1855ce3a0ce23897fb67d967417fe6f6a9560d0e"
 
   define_method(:install) do
     bin.install "claude2-d2"
-    system "codesign", "--sign", "-", "--force", "--identifier", "com.peterfox.claude2-d2", bin/"claude2-d2"
   end
 
   def caveats
@@ -25,11 +24,8 @@ class Claude2D2 < Formula
       This scans for your droid over Bluetooth and saves its address to ~/.claude2-d2.
       Only needed once.
 
-      Then grant Bluetooth permission and start the daemon:
+      Then start the daemon:
         brew services start claude2-d2
-
-      If macOS shows a Bluetooth permission loop, grant it manually:
-        System Settings → Privacy & Security → Bluetooth → add the binary
 
       Finally, install the Claude Code plugin so hooks are wired up automatically:
         Open Claude Code and run: /plugin install peterfox/claude2-d2 https://github.com/peterfox/claude2-d2
