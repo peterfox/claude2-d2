@@ -117,11 +117,11 @@ func (m *Machine) checkInactivity() {
 	}
 
 	if err := m.ping(); err != nil {
-		fmt.Fprintf(os.Stderr, "r2: keepalive ping failed (%v), reconnecting...\n", err)
+		fmt.Fprintf(os.Stderr, "claude2-d2: keepalive ping failed (%v), reconnecting...\n", err)
 		if err := m.attemptReconnect(); err != nil {
-			fmt.Fprintf(os.Stderr, "r2: reconnect failed: %v\n", err)
+			fmt.Fprintf(os.Stderr, "claude2-d2: reconnect failed: %v\n", err)
 		} else {
-			fmt.Fprintf(os.Stderr, "r2: reconnected\n")
+			fmt.Fprintf(os.Stderr, "claude2-d2: reconnected\n")
 		}
 	}
 }

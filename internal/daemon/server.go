@@ -45,7 +45,7 @@ func ServeEvents(ctx context.Context, machine *Machine, debug bool) {
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			fmt.Fprintf(os.Stderr, "r2: http server error: %v\n", err)
+			fmt.Fprintf(os.Stderr, "claude2-d2: http server error: %v\n", err)
 		}
 	}()
 

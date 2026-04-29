@@ -9,7 +9,7 @@ import (
 
 var uninstallCmd = &cobra.Command{
 	Use:   "uninstall",
-	Short: "Stop and remove the r2 launchd user agent",
+	Short: "Stop and remove the claude2-d2 launchd user agent",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if err := launchd.Unload(); err != nil {
 			return fmt.Errorf("failed to stop daemon: %w", err)

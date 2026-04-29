@@ -11,7 +11,7 @@ import (
 
 var installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Install the r2 daemon as a launchd user agent (auto-starts on login)",
+	Short: "Install the claude2-d2 daemon as a launchd user agent (auto-starts on login)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if _, err := r2.LoadConfig(); err != nil {
 			return err
@@ -31,7 +31,7 @@ var installCmd = &cobra.Command{
 		}
 
 		fmt.Println("Daemon installed and started.")
-		fmt.Println("Logs: /tmp/r2d2.log")
+		fmt.Println("Logs: /tmp/claude2-d2.log")
 		fmt.Printf("Status: launchctl list | grep %s\n", launchd.Label)
 		return nil
 	},

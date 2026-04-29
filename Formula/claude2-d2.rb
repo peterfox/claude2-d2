@@ -19,9 +19,9 @@ class Claude2D2 < Formula
   def caveats
     <<~EOS
       To get started, power on your R2-D2 and run:
-        r2 setup
+        claude2-d2 setup
 
-      This scans for your droid over Bluetooth and saves its address to ~/.r2d2.
+      This scans for your droid over Bluetooth and saves its address to ~/.claude2-d2.
       Only needed once.
 
       Then start the daemon:
@@ -35,13 +35,13 @@ class Claude2D2 < Formula
   end
 
   service do
-    run [opt_bin/"r2", "daemon"]
+    run [opt_bin/"claude2-d2", "daemon"]
     keep_alive true
-    log_path "/tmp/r2d2.log"
-    error_log_path "/tmp/r2d2.log"
+    log_path "/tmp/claude2-d2.log"
+    error_log_path "/tmp/claude2-d2.log"
   end
 
   test do
-    assert_match "r2", shell_output("#{bin}/r2 --help 2>&1")
+    assert_match "claude2-d2", shell_output("#{bin}/claude2-d2 --help 2>&1")
   end
 end

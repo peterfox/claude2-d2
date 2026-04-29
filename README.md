@@ -12,7 +12,7 @@ Claude Code (any session)
     ▼
 curl -s -X POST http://localhost:2187/event -d "<event>"
     ▼
-r2 daemon — animation state machine
+claude2-d2 daemon — animation state machine
     ▼
 Sphero R2-D2 over BLE
 ```
@@ -46,8 +46,8 @@ brew install claude2-d2
 ```bash
 git clone https://github.com/peterfox/claude2-d2
 cd claude2-d2
-go build -o r2 .
-mv r2 /usr/local/bin/r2
+go build -o claude2-d2 .
+mv claude2-d2 /usr/local/bin/claude2-d2
 ```
 
 ## Setup
@@ -55,10 +55,10 @@ mv r2 /usr/local/bin/r2
 **1. Power on your R2-D2 and scan for it:**
 
 ```bash
-r2 setup
+claude2-d2 setup
 ```
 
-Scans over BLE and saves the droid's address to `~/.r2d2`. Only needed once.
+Scans over BLE and saves the droid's address to `~/.claude2-d2`. Only needed once.
 
 **2. Start the daemon:**
 
@@ -69,12 +69,12 @@ brew services start claude2-d2
 
 Via source install (auto-starts on login):
 ```bash
-r2 install
+claude2-d2 install
 ```
 
 Manually (foreground, useful for development):
 ```bash
-r2 daemon --debug
+claude2-d2 daemon --debug
 ```
 
 **3. Install the Claude Code plugin:**
@@ -105,26 +105,26 @@ The `|| true` guard in every command means a stopped daemon is silently ignored.
 
 ## Testing
 
-Use `r2 signal` to fire events without needing a Claude session:
+Use `claude2-d2 signal` to fire events without needing a Claude session:
 
 ```bash
-r2 signal session_start      # greeting animation
-r2 signal thinking           # starts idle loop
-r2 signal prompt             # starts the 60s impatient timer
-r2 signal stop               # celebratory animation
-r2 signal stop_failure       # failure animation
-r2 signal permission_request # anxious animation (after 3s debounce)
+claude2-d2 signal session_start      # greeting animation
+claude2-d2 signal thinking           # starts idle loop
+claude2-d2 signal prompt             # starts the 60s impatient timer
+claude2-d2 signal stop               # celebratory animation
+claude2-d2 signal stop_failure       # failure animation
+claude2-d2 signal permission_request # anxious animation (after 3s debounce)
 ```
 
 ## Commands
 
 | Command | Description |
 |---|---|
-| `r2 setup` | Scan for R2-D2 and save its BLE address to `~/.r2d2` |
-| `r2 daemon [--debug]` | Connect and listen for HTTP events on `:2187` |
-| `r2 signal <event>` | Send an event directly to the daemon |
-| `r2 install` | Register as a launchd user agent (auto-starts on login) |
-| `r2 uninstall` | Stop and remove the launchd agent |
+| `claude2-d2 setup` | Scan for R2-D2 and save its BLE address to `~/.claude2-d2` |
+| `claude2-d2 daemon [--debug]` | Connect and listen for HTTP events on `:2187` |
+| `claude2-d2 signal <event>` | Send an event directly to the daemon |
+| `claude2-d2 install` | Register as a launchd user agent (auto-starts on login) |
+| `claude2-d2 uninstall` | Stop and remove the launchd agent |
 
 ## Daemon behaviour
 

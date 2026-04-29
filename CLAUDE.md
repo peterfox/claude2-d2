@@ -5,24 +5,24 @@ Go CLI that integrates a Sphero R2-D2 BLE toy with Claude Code. A persistent dae
 ## Quick start
 
 ```bash
-go build -o r2 .
-./r2 setup        # scan and save the droid's address to ~/.r2d2
-./r2 daemon       # connect and start listening (or use install for auto-start)
+go build -o claude2-d2 .
+./claude2-d2 setup        # scan and save the droid's address to ~/.claude2-d2
+./claude2-d2 daemon       # connect and start listening (or use install for auto-start)
 ```
 
 ## Commands
 
 | Command | Purpose |
 |---|---|
-| `r2 setup` | Scan for R2-D2, save address to `~/.r2d2` |
-| `r2 daemon [--debug]` | Connect by stored address, listen for HTTP events on `:2187` |
-| `r2 signal <event>` | POST an event to the daemon HTTP server (for testing) |
-| `r2 install` | Register daemon as a launchd user agent (auto-starts on login) |
-| `r2 uninstall` | Stop and remove the launchd agent |
+| `claude2-d2 setup` | Scan for R2-D2, save address to `~/.claude2-d2` |
+| `claude2-d2 daemon [--debug]` | Connect by stored address, listen for HTTP events on `:2187` |
+| `claude2-d2 signal <event>` | POST an event to the daemon HTTP server (for testing) |
+| `claude2-d2 install` | Register daemon as a launchd user agent (auto-starts on login) |
+| `claude2-d2 uninstall` | Stop and remove the launchd agent |
 
-## Config file — `~/.r2d2`
+## Config file — `~/.claude2-d2`
 
-Written by `r2 setup`. Contains the BLE address so the daemon connects directly without scanning.
+Written by `claude2-d2 setup`. Contains the BLE address so the daemon connects directly without scanning.
 
 ```json
 {
@@ -116,7 +116,7 @@ Formula/             Homebrew formula (updated automatically by GoReleaser)
 ## Build
 
 ```bash
-go build -o r2 .
+go build -o claude2-d2 .
 ```
 
 Requires macOS with Bluetooth. The `tinygo.org/x/bluetooth` package uses CoreBluetooth via CGo — no external BLE library needed.

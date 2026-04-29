@@ -10,7 +10,7 @@ import (
 	"text/template"
 )
 
-const Label = "com.r2d2.daemon"
+const Label = "com.claude2-d2.daemon"
 
 var plistTemplate = template.Must(template.New("plist").Parse(`<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -28,9 +28,9 @@ var plistTemplate = template.Must(template.New("plist").Parse(`<?xml version="1.
 	<key>KeepAlive</key>
 	<true/>
 	<key>StandardOutPath</key>
-	<string>/tmp/r2d2.log</string>
+	<string>/tmp/claude2-d2.log</string>
 	<key>StandardErrorPath</key>
-	<string>/tmp/r2d2.log</string>
+	<string>/tmp/claude2-d2.log</string>
 </dict>
 </plist>
 `))

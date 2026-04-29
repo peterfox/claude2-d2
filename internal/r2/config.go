@@ -17,7 +17,7 @@ func configPath() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(home, ".r2d2"), nil
+	return filepath.Join(home, ".claude2-d2"), nil
 }
 
 func LoadConfig() (*Config, error) {
@@ -28,7 +28,7 @@ func LoadConfig() (*Config, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return nil, fmt.Errorf("no device configured — run `r2 setup` first")
+			return nil, fmt.Errorf("no device configured — run `claude2-d2 setup` first")
 		}
 		return nil, err
 	}

@@ -11,7 +11,7 @@ import (
 var adapter = bluetooth.DefaultAdapter
 
 var rootCmd = &cobra.Command{
-	Use:   "r2",
+	Use:   "claude2-d2",
 	Short: "Control your Sphero R2-D2 and integrate it with Claude Code",
 }
 

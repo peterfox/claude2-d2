@@ -1,5 +1,5 @@
 {
-  "description": "Posts Claude Code lifecycle events to the r2 daemon HTTP server",
+  "description": "Posts Claude Code lifecycle events to the claude2-d2 daemon HTTP server",
   "hooks": {
     "UserPromptSubmit": [
       {

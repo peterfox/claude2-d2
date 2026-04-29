@@ -9,7 +9,7 @@ import (
 
 var setupCmd = &cobra.Command{
 	Use:   "setup",
-	Short: "Scan for your R2-D2 and save its address to ~/.r2d2",
+	Short: "Scan for your R2-D2 and save its address to ~/.claude2-d2",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if err := adapter.Enable(); err != nil {
 			return fmt.Errorf("bluetooth unavailable: %w", err)
@@ -31,7 +31,7 @@ var setupCmd = &cobra.Command{
 			return fmt.Errorf("failed to save config: %w", err)
 		}
 
-		fmt.Println("Saved to ~/.r2d2 — run `r2 install` to set up the daemon.")
+		fmt.Println("Saved to ~/.claude2-d2 — run `claude2-d2 install` to set up the daemon.")
 		return nil
 	},
 }
