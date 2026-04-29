@@ -1,6 +1,15 @@
 {
-  "description": "Posts Claude Code lifecycle events to the claude2-d2 daemon HTTP server",
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -s -X POST http://localhost:2187/event -d session_start || true"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -27,16 +36,6 @@
           {
             "type": "command",
             "command": "curl -s -X POST http://localhost:2187/event -d stop || true"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "curl -s -X POST http://localhost:2187/event -d session_start || true"
           }
         ]
       }

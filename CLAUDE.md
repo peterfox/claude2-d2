@@ -67,15 +67,63 @@ curl -s -X POST http://localhost:2187/event -d permission_request
 
 ## Claude Code plugin
 
-Hooks are packaged as a Claude Code plugin in `hooks/hooks.json` and `.claude-plugin/plugin.json`. Install with:
+Sources: [Plugin structure](https://code.claude.com/docs/en/plugins), [Hooks format](https://code.claude.com/docs/en/hooks), [Plugins reference](https://code.claude.com/docs/en/plugins-reference)
+
+### Directory layout
 
 ```
-/plugin marketplace add peterfox/claude2-d2
-/plugin
-/reload-plugins
+.claude-plugin/
+    plugin.json       # manifest — ONLY this file lives inside .claude-plugin/
+hooks/
+    hooks.json        # hook event handlers — at plugin ROOT, never inside .claude-plugin/
+```
+
+**Critical rule:** `commands/`, `agents/`, `skills/`, and `hooks/` must be at the plugin root. Do NOT nest them inside `.claude-plugin/`.
+
+### `.claude-plugin/plugin.json`
+
+```json
+{
+  "name": "claude2-d2",
+  "description": "...",
+  "version": "1.0.0",
+  "author": {
+    "name": "Peter Fox",
+    "email": "peter.fox@peterfox.me",
+    "url": "https://github.com/peterfox"
+  }
+}
+```
+
+### `hooks/hooks.json`
+
+The format is identical to the `hooks` object in `settings.json` — a top-level `"hooks"` key wrapping event names. Event names at the top level (without the `"hooks"` wrapper) will **not** work. Verified against official docs.
+
+```json
+{
+  "hooks": {
+    "EventName": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "..."
+          }
+        ]
+      }
+    ]
+  }
+}
 ```
 
 Six hooks are registered: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `Stop`, `StopFailure`, `PermissionRequest`. All use `|| true` so a stopped daemon is silently ignored.
+
+### Installing
+
+```
+/plugin marketplace add peterfox/claude2-d2
+/reload-plugins
+```
 
 ## Architecture
 
