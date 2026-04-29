@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "peterfox-claude2-d2",
+  "owner": {
+    "name": "Peter Fox"
+  },
+  "plugins": [
+    {
+      "name": "claude2-d2",
+      "source": ".",
+      "description": "Connects Claude Code lifecycle events to a Sphero R2-D2 droid via the claude2-d2 daemon on :2187",
+      "version": "1.0.0"
+    }
+  ]
+}
