@@ -144,6 +144,11 @@ func (c *Client) StopAnimation() error {
 	return err
 }
 
+func (c *Client) PowerOff() error {
+	_, err := c.mainChar.WriteWithoutResponse(powerOffPacket())
+	return err
+}
+
 func (c *Client) Disconnect() error {
 	return c.device.Disconnect()
 }

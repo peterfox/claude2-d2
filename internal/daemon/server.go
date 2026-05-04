@@ -19,6 +19,7 @@ var validEvents = map[string]bool{
 	"session_start":      true,
 	"stop_failure":       true,
 	"permission_request": true,
+	"power_off":          true,
 }
 
 func ServeEvents(ctx context.Context, machine *Machine, debug bool) {

@@ -16,9 +16,9 @@ var signalCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		event := args[0]
 		switch event {
-		case "prompt", "thinking", "stop":
+		case "prompt", "thinking", "stop", "session_start", "stop_failure", "permission_request", "power_off":
 		default:
-			return fmt.Errorf("unknown event %q — valid events: prompt, thinking, stop", event)
+			return fmt.Errorf("unknown event %q — valid events: prompt, thinking, stop, session_start, stop_failure, permission_request, power_off", event)
 		}
 
 		resp, err := http.Post(

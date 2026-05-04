@@ -194,6 +194,14 @@ func (m *Machine) Dispatch(event string) {
 		m.stopIdleLocked()
 		m.current = stateIdle
 		m.playTimedAnimLocked(r2.Animations[failureAnimations[rand.Intn(len(failureAnimations))]])
+
+	case "power_off":
+		m.cancelAngryLocked()
+		m.cancelPermissionLocked()
+		m.cancelTimedAnimLocked()
+		m.stopIdleLocked()
+		m.current = stateIdle
+		_ = m.client.PowerOff()
 	}
 }
 
